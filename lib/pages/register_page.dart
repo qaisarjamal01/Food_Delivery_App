@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/components/my_button.dart';
-import 'package:food_delivery_app/components/my_textFields.dart';
-import 'package:food_delivery_app/pages/home_page.dart';
 
-class LoginPage extends StatefulWidget {
+import '../components/my_button.dart';
+import '../components/my_textFields.dart';
+
+class RegisterPage extends StatefulWidget {
 
   final void Function()? onTap;
-  const LoginPage({super.key,required this.onTap});
+  const RegisterPage({super.key,required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
-  //login method
-  void login(){
-    /*
-    fill out authentication here
-     */
 
-    //Navigate to home page
-    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
 
             //message,app slogan
-            Text('Food Delivery App',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,fontSize: 16),),
+            Text("Let's create an account for you",style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,fontSize: 16),),
             SizedBox(
               height: 25,
             ),
@@ -51,20 +44,22 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 10,),
             MyTextField(controller: passwordController, hintText: 'Password', obscureText: true),
             SizedBox(height: 10,),
+            MyTextField(controller: confirmPasswordController, hintText: 'Confirm Password', obscureText: true),
+            SizedBox(height: 10,),
 
-            //sign in button
-            MyButton(onTap: login, text: 'Sign In'),
+            //sign up button
+            MyButton(onTap: (){}, text: 'Sign Up'),
             SizedBox(height: 25,),
 
-            //not a member,register now
+            //Already have an account? Login here
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Not a member?',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
+                Text('Already have an account?',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
                 SizedBox(width: 4,),
                 GestureDetector(
                     onTap: widget.onTap,
-                    child: Text('Register Now',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,fontWeight: FontWeight.bold),))
+                    child: Text('Login Now',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,fontWeight: FontWeight.bold),))
               ],
             )
           ],
