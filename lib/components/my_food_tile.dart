@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import '../models/food.dart';
 
 class MyFoodTile extends StatelessWidget {
@@ -14,25 +14,36 @@ class MyFoodTile extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onTap,
-          child: Row(
-            children: [
-              //text food details
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(food.name),
-                    Text(food.price.toString()),
-                    Text(food.description)
-                  ],
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                //text food details
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(food.name),
+                      Text('\$${food.price}',style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+                      SizedBox(height: 10),
+                      Text(food.description,style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary))
+                    ],
+                  ),
                 ),
-              ),
 
-              //food image
-              Expanded(child: Image.asset(food.imagePath,fit: BoxFit.cover,height: 50,width: 50,))
-            ],
+                SizedBox(width: 15),
+
+                //food image
+                Expanded(child: ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(8),
+                    child: Image.asset(food.imagePath,height: 120,fit: BoxFit.cover,)))
+              ],
+            ),
           ),
-        )
+        ),
+
+        //divider line
+        Divider(color: Theme.of(context).colorScheme.tertiary,indent: 25,endIndent: 25)
       ],
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'food.dart';
 
 class Restaurant with ChangeNotifier{
@@ -74,7 +73,7 @@ class Restaurant with ChangeNotifier{
     //salads
     Food(
       name: 'Caesar Salad',
-      description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
+      description: 'Crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 1.jpg',
       price: 7.99,
       category: FoodCategory.salads,
@@ -87,7 +86,7 @@ class Restaurant with ChangeNotifier{
 
     Food(
       name: 'Greek Salad',
-      description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
+      description: 'Crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 2.jpg',
       price: 7.99,
       category: FoodCategory.salads,
@@ -100,8 +99,8 @@ class Restaurant with ChangeNotifier{
 
     Food(
       name: 'Quinoa Salad',
-      description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
-      imagePath: 'assets/images/salads/salad 3.jpg',
+      description: 'Crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
+      imagePath: 'assets/images/salads/salad_3.jpg',
       price: 7.99,
       category: FoodCategory.salads,
       availableAddons: [
@@ -113,7 +112,7 @@ class Restaurant with ChangeNotifier{
 
     Food(
       name: 'Asian Sesame Salad',
-      description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
+      description: 'Crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 4.jpg',
       price: 7.99,
       category: FoodCategory.salads,
@@ -126,7 +125,7 @@ class Restaurant with ChangeNotifier{
 
     Food(
       name: 'South West Chicken Salad',
-      description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
+      description: 'Crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 5.jpg',
       price: 7.99,
       category: FoodCategory.salads,

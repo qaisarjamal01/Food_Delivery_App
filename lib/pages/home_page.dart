@@ -7,6 +7,7 @@ import 'package:food_delivery_app/components/my_sliver_app_bar.dart';
 import 'package:food_delivery_app/components/my_tab_bar.dart';
 import 'package:food_delivery_app/models/food.dart';
 import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:food_delivery_app/pages/food_page.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,8 +17,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   //tab controller
   late TabController _tabController;
 
@@ -25,7 +26,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: FoodCategory.values.length, vsync: this);
+    _tabController = TabController(
+      length: FoodCategory.values.length,
+      vsync: this,
+    );
   }
 
   @override
@@ -45,18 +49,25 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return FoodCategory.values.map((category) {
       //get category menu
       List<Food> categoryMenu = _filterMenuByCategory(category, fullMenu);
-      
-      return ListView.builder(
-          itemCount: FoodCategory.values.length,
-          physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.zero,
-          itemBuilder: (context,index) {
-            //get individual food
-            final food = categoryMenu[index];
 
-            //return food tile UI
-        return MyFoodTile(food: food, onTap: (){});
-      });
+      return ListView.builder(
+        itemCount: FoodCategory.values.length,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.zero,
+        itemBuilder: (context, index) {
+          //get individual food
+          final food = categoryMenu[index];
+
+          //return food tile UI
+          return MyFoodTile(
+            food: food,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FoodPage(food: food)),
+            ),
+          );
+        },
+      );
     }).toList();
   }
 
@@ -64,8 +75,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(),
-      body: NestedScrollView(headerSliverBuilder: (context,innerBoxIsScrolled) => [
-        MySliverAppBar(title: MyTabBar(tabController: _tabController),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          MySliverAppBar(
+            title: MyTabBar(tabController: _tabController),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -79,13 +92,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 MyCurrentLocation(),
 
                 //description box
-                MyDescriptionBox()
-          ],
-        )),
-      ], body: Consumer<Restaurant>(builder: (context,restaurant,child) =>TabBarView(
-          controller: _tabController,
-          children: getFoodInThisCategory(restaurant.menu)))
-      )
+                MyDescriptionBox(),
+              ],
+            ),
+          ),
+        ],
+        body: Consumer<Restaurant>(
+          builder: (context, restaurant, child) => TabBarView(
+            controller: _tabController,
+            children: getFoodInThisCategory(restaurant.menu),
+          ),
+        ),
+      ),
     );
   }
 }
