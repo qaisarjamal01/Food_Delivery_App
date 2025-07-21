@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'food.dart';
 
-class Restaurant {
+class Restaurant with ChangeNotifier{
   //list of food menu
   final List<Food> _menu = [
     //burgers
@@ -75,7 +77,7 @@ class Restaurant {
       description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 1.jpg',
       price: 7.99,
-      category: FoodCategory.salad,
+      category: FoodCategory.salads,
       availableAddons: [
         Addon(name: 'Grilled Chicken', price: 0.99),
         Addon(name: 'Anchovies', price: 1.99),
@@ -88,7 +90,7 @@ class Restaurant {
       description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 2.jpg',
       price: 7.99,
-      category: FoodCategory.salad,
+      category: FoodCategory.salads,
       availableAddons: [
         Addon(name: 'Grilled Chicken', price: 0.99),
         Addon(name: 'Anchovies', price: 1.99),
@@ -101,7 +103,7 @@ class Restaurant {
       description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 3.jpg',
       price: 7.99,
-      category: FoodCategory.salad,
+      category: FoodCategory.salads,
       availableAddons: [
         Addon(name: 'Grilled Chicken', price: 0.99),
         Addon(name: 'Anchovies', price: 1.99),
@@ -114,7 +116,7 @@ class Restaurant {
       description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 4.jpg',
       price: 7.99,
-      category: FoodCategory.salad,
+      category: FoodCategory.salads,
       availableAddons: [
         Addon(name: 'Grilled Chicken', price: 0.99),
         Addon(name: 'Anchovies', price: 1.99),
@@ -127,7 +129,7 @@ class Restaurant {
       description: 'crip romaine lettuce,parmesan cheese, croutons, and Caesar dressings',
       imagePath: 'assets/images/salads/salad 5.jpg',
       price: 7.99,
-      category: FoodCategory.salad,
+      category: FoodCategory.salads,
       availableAddons: [
         Addon(name: 'Grilled Chicken', price: 0.99),
         Addon(name: 'Anchovies', price: 1.99),
@@ -332,5 +334,43 @@ class Restaurant {
         Addon(name: 'Ginger Zest', price: 1.5)
       ],
     ),
+
   ];
+
+  /*
+
+    G E T T E R S
+
+     */
+
+  List<Food> get menu => _menu;
+
+  /*
+
+    O P P E R A T I O N S
+
+     */
+
+  //add to cart
+
+  //remove from the cart
+
+  //get total price of the cart
+
+  //get total number of items in the cart
+
+  //clear cart
+
+  /*
+
+    H E L P E R S
+
+     */
+
+  //generate a receipt
+
+  //format double value into money
+
+  //format list of addons into a string summary
+
 }

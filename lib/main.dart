@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/auth/login_or_register.dart';
-import 'package:food_delivery_app/pages/login_page.dart';
-import 'package:food_delivery_app/pages/register_page.dart';
+import 'package:food_delivery_app/models/restaurant.dart';
 import 'package:food_delivery_app/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +14,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => Restaurant()),
+    ],child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       // theme: ThemeData(
@@ -23,6 +24,6 @@ class MyApp extends StatelessWidget {
       // ),
       home: const LoginOrRegister(),
       theme: Provider.of<ThemeProvider>(context).themeData,
-    );
+    ));
   }
 }
