@@ -7,8 +7,8 @@ class Food {
   final FoodCategory category;
   List<Addon> availableAddons;
 
-  Food({required this.description, required this.imagePath,
-    required this.name,required this.price,required this.category,required this.availableAddons});
+  Food({ required this.name,required this.description, required this.imagePath,
+   required this.price,required this.category,required this.availableAddons});
 }
 
 //food categories
@@ -25,5 +25,5 @@ class Addon {
   String name;
   double price;
 
-  Addon({required this.price,required this.name});
+  Addon({required this.name,required this.price,});
 }
