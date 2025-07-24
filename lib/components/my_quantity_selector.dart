@@ -30,7 +30,7 @@ class MyQuantitySelector extends StatelessWidget {
           ),
 
           //quantity count
-          Padding(padding: EdgeInsets.symmetric(horizontal: 8),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 2),
           child: SizedBox(width: 20,child: Center(child: Text(quantity.toString())))),
 
           //increase button
