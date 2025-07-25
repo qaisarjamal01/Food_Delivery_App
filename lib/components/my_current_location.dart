@@ -1,26 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class MyCurrentLocation extends StatelessWidget {
-  const MyCurrentLocation({super.key});
+   MyCurrentLocation({super.key});
 
-  void openLocationSearchBox(BuildContext context){
-    showDialog(context: context, builder: (context) => AlertDialog(
-      title: Text('Your location'),
-      content: TextField(
-        decoration: InputDecoration(
-          hintText: 'Search Address..'
+  TextEditingController textController = TextEditingController();
+
+  void openLocationSearchBox(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Your location'),
+        content: TextField(
+          controller: textController,
+          decoration: InputDecoration(hintText: 'Enter Address..'),
         ),
+        actions: [
+          //cancel button
+          MaterialButton(
+            onPressed: () {
+              Navigator.pop(context);
+              textController.clear();
+        },
+            child: Text('Cancel'),
+          ),
+
+          //save button
+          MaterialButton(
+            onPressed: () {
+              //update delivery address
+              String newAddress = textController.text;
+              context.read<Restaurant>().updateDeliveryAddress(newAddress);
+              Navigator.pop(context);
+              textController.clear();
+          },
+            child: Text('Save'),
+          ),
+        ],
       ),
-      actions: [
-        //cancel button
-        MaterialButton(onPressed: () => Navigator.pop(context),child: Text('Cancel')),
-        
-        //save button
-        MaterialButton(onPressed: () => Navigator.pop(context),child: Text('Save'))
-      ],
-    ));
+    );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,19 +49,30 @@ class MyCurrentLocation extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Deliver now',style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+          Text(
+            'Deliver now',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
           GestureDetector(
             onTap: () => openLocationSearchBox(context),
             child: Row(
               children: [
                 //address
-                Text('6901 Johar Town',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,fontWeight: FontWeight.bold)),
+                Consumer<Restaurant>(
+                  builder: (context, restaurant, child) => Text(
+                    restaurant.deliveryAddress,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
 
                 //drop down menu
-                Icon(Icons.keyboard_arrow_down_rounded)
+                Icon(Icons.keyboard_arrow_down_rounded,color: Theme.of(context).colorScheme.inversePrimary),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

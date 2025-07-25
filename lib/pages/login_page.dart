@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/components/my_button.dart';
 import 'package:food_delivery_app/components/my_textFields.dart';
-import 'package:food_delivery_app/pages/home_page.dart';
+import 'package:food_delivery_app/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -14,18 +14,28 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+  //text editing controllers
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   //login method
-  void login(){
-    /*
-    fill out authentication here
-     */
+  void login() async{
+    //get instance of auth service
+    final _authService = AuthService();
 
-    //Navigate to home page
-    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+    //try sign in
+    try{
+      await _authService.signInWithEmailPassword(emailController.text, passwordController.text);
+    }
+    
+    //display any errors
+    catch (e) {
+      showDialog(context: context, builder: (context) => AlertDialog(title: Text(e.toString())));
+    }
   }
+
+  //forgot password
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
