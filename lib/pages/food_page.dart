@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/components/my_button.dart';
+import 'package:food_delivery_app/models/cart_model.dart';
 import 'package:food_delivery_app/models/restaurant.dart';
 import 'package:provider/provider.dart';
 import '../models/food.dart';
@@ -34,6 +35,7 @@ class _FoodPageState extends State<FoodPage> {
 
     //add to cart
     context.read<Restaurant>().addToCart(food, currentlySelectedAddons);
+    context.read<CartProvider>().addItem();
   }
 
   @override

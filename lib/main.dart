@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/firebase_options.dart';
+import 'package:food_delivery_app/models/cart_model.dart';
 import 'package:food_delivery_app/models/restaurant.dart';
 import 'package:food_delivery_app/services/auth/auth_gate.dart';
 import 'package:food_delivery_app/themes/theme_provider.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => Restaurant()),
+      ChangeNotifierProvider(create: (context) => CartProvider())
     ],child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
