@@ -24,11 +24,12 @@ class MyCartTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //food image
                   ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(cartItem.food.imagePath,height: 100,width: 100,)),
+                      child: Image.asset(cartItem.food.imagePath,height: 100,width: 100,fit: BoxFit.cover)),
 
                   SizedBox(width: 10),
 
@@ -48,7 +49,7 @@ class MyCartTile extends StatelessWidget {
                         ),
 
                         //food price
-                        Text('\$${cartItem.food.price}'),
+                        Text('\$${cartItem.food.price}',style: TextStyle(color: Theme.of(context).colorScheme.primary)),
                       ],
                     ),
                   ),
