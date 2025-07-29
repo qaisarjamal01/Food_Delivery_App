@@ -1,14 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/components/my_button.dart';
 import 'package:food_delivery_app/components/my_textFields.dart';
+import 'package:food_delivery_app/services/auth/auth_service.dart';
 
 class ResetPassword extends StatelessWidget {
    ResetPassword({super.key});
-  
-  TextEditingController emailController = TextEditingController();
+   
+  final emailController = TextEditingController();
 
   void resetPassword(BuildContext context) async {
+    //get instance of authService
+    final authService = AuthService();
+
     if (emailController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter your email')),
@@ -17,8 +20,7 @@ class ResetPassword extends StatelessWidget {
     }
 
     try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: emailController.text.trim())
+      await authService.resetPassword(emailController.text)
           .then((value) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Reset password email sent!')),
